@@ -5,8 +5,11 @@ from .models import Image
 from django.http import JsonResponse
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 import os
 from dotenv import load_dotenv
+
+
 
 load_dotenv()  # Load variables from .env file into os.environ
 api_key = os.environ.get('OPENAI_API_KEY')
@@ -25,7 +28,7 @@ def ask_openai(message):
     answer = response.choices[0].text.strip()
     return answer
 
-
+@login_required
 def chat(request):
     chatbot_response = None
     if api_key is not None and request.method == "POST":
@@ -74,6 +77,7 @@ def logout(request):
     auth.logout(request)
     return redirect("login")
 
+@login_required
 def spanish(request):
     if api_key is not None and request.method == "POST":
         openai.api_key = api_key
@@ -91,6 +95,7 @@ def spanish(request):
         chat_response = "" # when request.method is not post
     return render(request, "chatbot/spanish.html", {"response": chat_response})
 
+@login_required
 def detector(request):
     if api_key is not None and request.method == "POST":
         openai.api_key = api_key
@@ -107,6 +112,7 @@ def detector(request):
         chat_response = ""
     return render(request, "chatbot/detector.html", {"response": chat_response})
 
+@login_required
 def image(request):
     obj = None
     if api_key is not None and request.method == "POST":

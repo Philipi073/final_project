@@ -1,7 +1,8 @@
 {% extends 'chatbot/1-layout.html' %}
+{% block title %}Language_Translator{% endblock %}
 {% block content %}
 	<div class="container">
-		<h1 style="color:blue; text-align:center">CHAT APP </h1>
+		<h1 style="color:blue; text-align:center">OKOMBI-AI welcomes {{user.username}} </h1>
 		<h3 style="color:blue; text-align:center">Translate to Languages </h3>
 		<form method="post">
 			{% csrf_token %}
@@ -11,7 +12,7 @@
 				<option value="French"> French </option>
 				<option value="Spanish"> Spanish </option>
 				<option value="Dutch"> Dutch </option>
-				<option value="Chinese"> Chinese </option>
+				<option value="German"> German </option>
 				<option value="Nigerian Pidgin English"> Nigerian Pidgin English </option>
 				<option value="Arabic"> Arabic </option>
 				<option value="Portuguese"> Portuguese </option>
@@ -21,7 +22,7 @@
 			<button type="submit" class="btn btn-primary mt-3 mb-3"> Submit</button>
 		</form>
 		{% if response %}
-			<div class="container">
+			<div class="message-content" style="color:blue; text-align:center">
 				{{ response | safe }}
 			</div>
 		{% endif %}
