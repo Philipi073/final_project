@@ -1,0 +1,29 @@
+{% extends 'chatbot/1-layout.html' %}
+{% block content %}
+	<div class="container">
+		<h1 style="color:blue; text-align:center">CHAT APP </h1>
+		<h3 style="color:blue; text-align:center">Translate to Languages </h3>
+		<form method="post">
+			{% csrf_token %}
+			<input type="text" class="form-control" name="user_input">
+			<select name="lang">
+				<option value="English"> English </option>
+				<option value="French"> French </option>
+				<option value="Spanish"> Spanish </option>
+				<option value="Dutch"> Dutch </option>
+				<option value="Chinese"> Chinese </option>
+				<option value="Nigerian Pidgin English"> Nigerian Pidgin English </option>
+				<option value="Arabic"> Arabic </option>
+				<option value="Portuguese"> Portuguese </option>
+				<option value="Russian"> Russian </option>
+				<option value="Japanese"> Japanese </option>
+			</select>
+			<button type="submit" class="btn btn-primary mt-3 mb-3"> Submit</button>
+		</form>
+		{% if response %}
+			<div class="container">
+				{{ response | safe }}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

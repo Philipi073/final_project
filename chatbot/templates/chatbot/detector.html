@@ -1,0 +1,17 @@
+{% extends 'chatbot/1-layout.html' %}
+{% block content %}
+	<div class="container">
+		<h1 style="color:blue; text-align:center">CHAT APP </h1>
+		<h3 style="color:blue; text-align:center">LANGUAGE DETECTOR </h3>
+		<form method="post">
+			{% csrf_token %}
+			<input type="text" class="form-control" name="user_input">
+			<button type="submit" class="btn btn-primary mt-3 mb-3"> Detect</button>
+		</form>
+		{% if response %}
+			<div class="container">
+				{{ response | safe }}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
