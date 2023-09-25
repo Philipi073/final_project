@@ -4,6 +4,9 @@
 	<div class="container">
 		<h1 style="color:blue; text-align:center">OKOMBI-AI welcomes {{user.username}} </h1>
 		<h3 style="color:blue; text-align:center">TEXT TO IMAGE </h3>
+		{% if error_message%}
+			<div class="alert alert-danger" role="alert">{{ error_message }}</div>
+		{% endif%}
 		<form method="post">
 			{% csrf_token %}
 			<input type="text" class="form-control" name="user_input">
